@@ -1,7 +1,12 @@
-/*
-  Action Types Go Here!
-  Be sure to export each action type so you can pull it into your reducer
-*/
+import axios from "axios";
+
+// export const ADD_SMURF_START = 'ADD_SMURF_START'
+// export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS'
+// export const ADD_SMURF_FAILURE = 'ADD_SMURF_FAILURE'
+
+export const FETCH_SMURF_START = "FETCH_SMURF_START";
+export const FETCH_SMURF_SUCCESS = "FETCH_SMURF_SUCCESS";
+export const FETCH_SMURF_FAILURE = "FETCH_SMURF_FAILURE";
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -13,22 +18,12 @@
    U - updateSmurf
    D - deleteSmurf
 */
-import axios from "axios";
-import { response } from "express";
-
-// export const ADD_SMURF_START = 'ADD_SMURF_START'
-// export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS'
-// export const ADD_SMURF_FAILURE = 'ADD_SMURF_FAILURE'
-
-export const FETCH_SMURF_START = "FETCH_SMURF_START";
-export const FETCH_SMURF_SUCCESS = "FETCH_SMURF_SUCCESS";
-export const FETCH_SMURF_FAILURE = "FETCH_SMURF_FAILURE";
 
 export const getSmurfs = () => dispatch => {
   dispatch({ type: FETCH_SMURF_START });
   axios
     .get("http://localhost:3333/smurfs")
-    .then(res => {
+    .then(response => {
       console.log("fetch finished");
       dispatch({
         type: FETCH_SMURF_SUCCESS,
