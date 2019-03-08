@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import SmurfList from "./SmurfList";
+import Form from "./SmurfForm.js";
+import { connect } from "react-redux";
+import { addSmurf } from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own.
@@ -12,9 +15,13 @@ class App extends Component {
     return (
       <div className="App">
         <SmurfList />
+        <Form submit={this.props.addSmurf} />
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { addSmurf }
+)(App);

@@ -1,17 +1,18 @@
 import React from "react";
 import { getSmurfs } from "../actions";
-import Smurf from "./Smurf";
 import { connect } from "react-redux";
+import Smurf from "./Smurf";
 
 class SmurfList extends React.Component {
   componentDidMount() {
     this.props.getSmurfs();
   }
+
   render() {
     if (this.props.fetchingSmurfs) {
       return (
         <div>
-          <h1>Loading...</h1>
+          <h1>Looking for Smurfs...</h1>
         </div>
       );
     }
@@ -24,14 +25,16 @@ class SmurfList extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
+
+const mapStateToPops = state => {
   console.log(state);
   return {
     smurfs: state.smurfs,
     fetchingSmurfs: state.fetchingSmurfs
   };
 };
+
 export default connect(
-  mapStateToProps,
+  mapStateToPops,
   { getSmurfs }
 )(SmurfList);

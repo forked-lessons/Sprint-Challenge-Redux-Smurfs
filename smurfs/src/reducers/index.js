@@ -4,14 +4,18 @@
 import {
   FETCH_SMURF_FAILURE,
   FETCH_SMURF_SUCCESS,
-  FETCH_SMURF_START
+  FETCH_SMURF_START,
+  ADD_SMURF_START,
+  ADD_SMURF_SUCCESS,
+  ADD_SMURF_FAILURE
 } from "../actions";
 
 //  Your initial/default state for this project could *Although does not have to* look a lot like this
 const initialState = {
   smurfs: [],
   fetchingSmurfs: false,
-  error: null
+  error: null,
+  editing: false
 };
 
 /*
@@ -35,6 +39,23 @@ const smurfsReducer = (state = initialState, action) => {
         smurfs: action.payload
       };
     case FETCH_SMURF_FAILURE:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        error: action.payload
+      };
+    case ADD_SMURF_START:
+      return {
+        ...state,
+        fetchingSmurfs: true
+      };
+    case ADD_SMURF_SUCCESS:
+      return {
+        ...state,
+        fetchingSmurfs: false,
+        smurfs: action.payload
+      };
+    case ADD_SMURF_FAILURE:
       return {
         ...state,
         fetchingSmurfs: false,
